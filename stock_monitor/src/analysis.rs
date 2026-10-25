@@ -1,15 +1,13 @@
 use crate::stock::StockDay;
 
-pub fn is_volatile(day: &StockDay) -> bool{
+pub fn is_volatile(day: &StockDay) -> bool {
     (day.high - day.low) / day.close > 0.02
 }
 
 pub fn closing_extrema(days: &[StockDay]) -> Option<(&StockDay, &StockDay)> {
-    let minimum = days.iter()
-                          .min_by(|a,b| a.close.total_cmp(&b.close))?;
-    let maximum = days.iter()
-                          .max_by(|a,b| a.close.total_cmp(&b.close))?;
-    Some((minimum,maximum))
+    let minimum = days.iter().min_by(|a, b| a.close.total_cmp(&b.close))?;
+    let maximum = days.iter().max_by(|a, b| a.close.total_cmp(&b.close))?;
+    Some((minimum, maximum))
 }
 
 #[cfg(test)]
